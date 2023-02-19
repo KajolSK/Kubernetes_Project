@@ -1,0 +1,13 @@
+---
+ - hosts: ansible
+   
+   tasks:
+     
+       - name: build image
+         shell: docker build -t phoneapp /opt/kube
+
+       - name: create tag to push image onto docker hub
+         shell: docker tag phoneapp:latest kajolsk/phoneapp:latest
+
+       - name: push docker image
+         shell: docker push kajolsk/phoneapp:latest 
