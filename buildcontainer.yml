@@ -1,0 +1,18 @@
+---
+ - hosts: docker
+
+   tasks:
+     - name: stop existing container
+       shell: docker stop phoneapp
+       ignore_errors: yes
+
+     - name: remove the container
+       shell: docker rm phoneapp
+       ignore_errors: yes
+
+     - name: remove image
+       shell: docker rmi kajolsk/phoneapp:latest
+       ignore_errors: yes
+
+     - name: create container
+       shell: docker run -d --name phoneapp -p 8080:8080 kajolsk/phoneapp:latest
